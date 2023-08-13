@@ -1,7 +1,6 @@
 import React from 'react'
 import { Dashboard } from './src/Screens/Dashboard'
 import { ThemeProvider } from 'styled-components/native'
-import AppLoading from 'expo-app-loading'
 import theme from './src/global/styles/theme'
 import * as SplashScreen from 'expo-splash-screen'
 
@@ -11,9 +10,7 @@ import {
   Poppins_500Medium,
   Poppins_700Bold,
 } from '@expo-google-fonts/poppins'
-
-// Keep the splash screen visible while we fetch resources
-SplashScreen.preventAutoHideAsync()
+import { View, Text } from 'react-native'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -23,7 +20,11 @@ export default function App() {
   })
 
   if (!fontsLoaded) {
-    return <AppLoading />
+    return (
+      <View>
+        <Text>Loading</Text>
+      </View>
+    )
   }
   return (
     <ThemeProvider theme={theme}>
